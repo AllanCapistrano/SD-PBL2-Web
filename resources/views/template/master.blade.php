@@ -14,36 +14,39 @@
 </head>
 <body style="background-color: #2e2e2e">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="mx-3 navbar-brand" href="#">
-          <i class="bi bi-lightbulb-fill"></i>
-          TechBulb
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">
-                <i class="fas fa-sliders-h"></i>
-                Home <span class="sr-only">(Página atual)</span>
+        <div class="container-fluid">
+            <a class="mx-3 navbar-brand" href="#">
+                <i class="bi bi-lightbulb-fill"></i>
+                TechBulb
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-stopwatch"></i>
-                Temporizador
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <i class="fas fa-history"></i>
-                Histórico
-              </a>
-            </li>
-          </ul>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">
+                    <i class="fas fa-sliders-h"></i>
+                    Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-stopwatch"></i>
+                  Temporizador
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-history"></i>
+                  Histórico
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-    </nav>
+      </nav>
+    
     <div class="container-fluid">
         @yield('content')
     </div>
