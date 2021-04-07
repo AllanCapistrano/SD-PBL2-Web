@@ -7,23 +7,24 @@
     <link rel="stylesheet" href="{{ asset('css/style-timer.css') }}">
 @endsection
 
-
-
 @section('content')
     <div class="row">
         <div class="col-12 d-flex justify-content-center align-items-center">
-            <a class="mx-3 navbar-brand lamp-icon" href="#">
-                @if (1==1)
-                    <i class="bi bi-lightbulb-off-fill"></i>
-                @else
-                    <i class="bi bi-lightbulb-fill"></i>
-                @endif
-            </a>
+            <form id="lamp_form" action="{{ route('toggleLamp') }}" method="post" onsubmit="return false">
+                @csrf
+                <a class="mx-3 navbar-brand lamp-icon" onclick="document.getElementById('lamp_form').submit();">
+                    @if ($lamp->on)
+                        <i class="bi bi-lightbulb-off-fill"></i>
+                    @else
+                        <i class="bi bi-lightbulb-fill"></i>
+                    @endif
+                </a>
+            </form>
         </div>
     </div>
     <div class="row">
         <div class="col-12 d-flex justify-content-center align-items-center">
-            @if (1==1)
+            @if ($lamp->on)
                 <h2>LIGADA</h2>
             @else
                 <h2>DESLIGADA</h2>
@@ -58,8 +59,6 @@
         </div>
     </div>
 @endsection
-
-
 
 @section('content-js')
     
