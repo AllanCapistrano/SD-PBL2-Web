@@ -2,11 +2,12 @@
     margin-top: 10%;
     font-size: 120pt;
     color: #fff;
-    transition: .5s;
+    transition: .3s;
 }
 
 .lamp-icon:hover{
     color: rgb(185, 185, 185);
+    cursor: pointer;
 }
 
 h2{
