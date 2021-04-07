@@ -1,0 +1,55 @@
+.btn-darkk {
+    background-color: #535353;
+    transition: .3s;
+    padding: 1.5rem 7rem !important;
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 30px !important;
+}
+
+.btn-darkk:hover {
+    background-color: #424242;
+    color: #fff;
+}
+
+.btn-darkk:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.text-white {
+    color: #fff;
+}
+
+.align-buttons {
+    display: flex; 
+    flex-direction: row;
+}
+
+.trash-icon {
+    color: #fff;
+    font-size: 1.65rem;
+    transition: .5s;
+}
+
+.trash-icon:hover{
+    color: rgb(185, 185, 185);
+}
+
+@media(max-width: 768px) {
+    .btn-darkk {
+        padding: 1.25rem 6rem !important;
+        color: #fff;
+        font-size: 1.2rem;
+        border-radius: 20px !important;
+    }
+}
+
+@media(max-width: 576px) {
+    .btn-darkk {
+        padding: 1rem 5rem !important;
+        color: #fff;
+        font-size: .8rem;
+        border-radius: 20px !important;
+    }
+}
