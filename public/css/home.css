@@ -1,0 +1,14 @@
+.lamp-icon{
+    margin-top: 10%;
+    font-size: 120pt;
+    color: #fff;
+    transition: .5s;
+}
+
+.lamp-icon:hover{
+    color: rgb(185, 185, 185);
+}
+
+h2{
+    color: #fff;
+}

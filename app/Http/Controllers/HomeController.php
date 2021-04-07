@@ -13,9 +13,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        return view('home');
     }
 
+
+    public function historic(){
+        return view('historic');
+    }
     /**
      * Show the form for creating a new resource.
      *
