@@ -13,10 +13,20 @@
     @yield('content-css')
 </head>
 <body style="background-color: #2e2e2e">
+    @php
+        use App\Models\NodeMCU\Lamp;
+        
+        $lamp = Lamp::get()->first();
+    @endphp
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="mx-3 navbar-brand" href="#">
-                <i class="bi bi-lightbulb-fill"></i>
+            <a class="mx-3 navbar-brand" href="{{ route('home') }}">
+                @if ($lamp->on)
+                        <i class="bi bi-lightbulb-off-fill"></i>
+                @else
+                    <i class="bi bi-lightbulb-fill"></i>
+                @endif
                 TechBulb
               </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

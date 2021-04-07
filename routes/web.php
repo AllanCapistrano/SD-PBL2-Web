@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NodeMCU\LampController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,4 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/historic',[HomeController::class,'historic'])->name('historic');
 
 Route::get('/schedule',[HomeController::class,'schedule'])->name('schedule');
+Route::post('/toggleLamp', [LampController::class,'toggleLamp'])->name('toggleLamp');
