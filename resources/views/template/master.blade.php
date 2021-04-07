@@ -25,7 +25,7 @@
           <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
+                <a class="nav-link active" aria-current="page" href="{{ route('home') }}">
                     <i class="fas fa-sliders-h"></i>
                     Home
                 </a>
@@ -37,7 +37,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('historic') }}">
                   <i class="fas fa-history"></i>
                   Histórico
                 </a>
