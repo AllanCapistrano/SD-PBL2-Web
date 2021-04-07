@@ -14,5 +14,9 @@ class HomeController extends Controller
     public function historic(){
         return view('historic');
     }
+
+    public function schedule(){
+        return view('schedule');
+    }
     
 }

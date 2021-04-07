@@ -31,9 +31,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('schedule') }}">
                   <i class="fas fa-stopwatch"></i>
-                  Temporizador
+                  Horário
                 </a>
               </li>
               <li class="nav-item">
