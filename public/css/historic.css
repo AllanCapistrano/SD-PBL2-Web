@@ -1,0 +1,12 @@
+thead{
+    background-color: #212529;
+    color: #fff;
+}
+
+tbody{
+    color: #fff;
+}
+
+thead tr th, tbody tr th{
+    text-align: center;
+}

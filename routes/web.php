@@ -18,4 +18,6 @@ use App\Http\Controllers\HomeController;
     return view('index');
 }); */
 
-Route::get('/',[HomeController::class,'index']);
+Route::get('/',[HomeController::class,'index'])->name('home');
+
+Route::get('/historic',[HomeController::class,'historic'])->name('historic');
