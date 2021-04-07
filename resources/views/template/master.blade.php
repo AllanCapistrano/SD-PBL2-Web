@@ -23,9 +23,9 @@
         <div class="container-fluid">
             <a class="mx-3 navbar-brand" href="{{ route('home') }}">
                 @if ($lamp->on)
-                        <i class="bi bi-lightbulb-off-fill"></i>
-                @else
                     <i class="bi bi-lightbulb-fill"></i>
+                @else
+                    <i class="bi bi-lightbulb-off-fill"></i>
                 @endif
                 TechBulb
               </a>

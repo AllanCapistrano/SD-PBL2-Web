@@ -9,14 +9,14 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="col-12 d-flex justify-content-center align-items-center mt-5">
             <form id="lamp_form" action="{{ route('toggleLamp') }}" method="post" onsubmit="return false">
                 @csrf
                 <a class="mx-3 navbar-brand lamp-icon" onclick="document.getElementById('lamp_form').submit();">
                     @if ($lamp->on)
-                        <i class="bi bi-lightbulb-off-fill"></i>
-                    @else
                         <i class="bi bi-lightbulb-fill"></i>
+                    @else
+                        <i class="bi bi-lightbulb-off-fill"></i>
                     @endif
                 </a>
             </form>
