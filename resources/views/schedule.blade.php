@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-9 d-flex justify-content-center align-items-center">
+        <div class="col-12 d-flex justify-content-center align-items-center">
             <livewire:schedule />
         </div>
     </div>

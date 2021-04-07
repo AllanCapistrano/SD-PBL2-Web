@@ -1,12 +1,14 @@
-<div>
+<div class="w-100">
+    <h1>{{ $count }}</h1>
     <div style="text-align: center">
-        <button wire:click="increment">+</button>
-        <h1>{{ $count }}</h1>
+        <button class="btn btn-lg btn-dark" wire:click="increment">
+            <i class="fas fa-plus"></i>
+        </button>
     </div>
     <div class="pt-5">
-        <h5>COMENTÁRIOS</h5>
-        <hr>
-        {{-- @foreach ($comments as $comment)
+        <h5>HORÁRIOS</h5>
+        {{-- <hr>
+        @foreach ($comments as $comment)
         <div class="" style="width: 22%">
         <div class="row">
             <div class="card bg-light col-md-12 d-flex justify-content-end mb-3" style="max-width: 24rem; height:auto;">
@@ -18,22 +20,51 @@
             </div>
         </div>
         </div>
-        @endforeach --}}
-        <hr>
+        @endforeach
+        <hr> --}}
         <form method="post" wire:submit.prevent="create">
             @error('content')
                 {{$message}}
             @enderror
-            <div class="input-group mb-3">
-                @for ($i = 0; $i < $count; $i++)
-                    <textarea class="form-control" placeholder="Envie um comentário" name="content" id="content" wire:model="content" cols="5" rows="1"></textarea>
+            <div class="row mt-5">
+                @for($i=0; $i < $count; $i++)
+                    <div class="input-group mt-3">
+                        <div class="col-4 d-flex justify-content-center align-items-center">
+                            <h3 class="text-white mx-2">Início: </h3>
+                            <input style="width: 50%" class="form-control input-timer" type="text" name="schedule{{$i}}" id="" placeholder="Ex: 00h30m05s">
+                        </div>
+
+
+                        <div class="col-4 d-flex justify-content-center align-items-center">
+                            <h3 class="text-white mx-2">Fim: </h3>
+                            <input style="width: 50%" class="form-control input-timer" type="text" name="schedule{{$i}}" id="" placeholder="Ex: 00h30m05s">
+                        </div>
+
+
+                        <div class="col-4 mt-3 mt-lg-0">
+                            <form action="" method="POST">
+                                <div class="align-buttons align-items-center">
+                                    <div class="form-check text-white mx-2">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault{{$i}}" id="rb-ligada{{$i}}"checked>
+                                        <label class="form-check-label" for="rb-ligada{{$i}}">
+                                            Ligada
+                                        </label>
+                                    </div>
+                                    <div class="form-check text-white mx-1">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault{{$i}}" id="rb-desligada{{$i}}">
+                                        <label class="form-check-label" for="rb-desligada{{$i}}">
+                                            Desligada
+                                        </label>
+                                    </div>
+                
+                                    <button class="btn btn-md btn-secondary mx-3 align-self-center" type="submit">Ativar</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
                 @endfor
-               
-                <div class="input-group-append">
-                    <button class="btn btn-dark" type="submit">Enviar</button>
-                </div>
             </div>
         </form>
-        
     </div>
 </div>

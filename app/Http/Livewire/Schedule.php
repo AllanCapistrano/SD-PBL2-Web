@@ -3,10 +3,13 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+/* use App\Models\Schedule; */
+
 
 class Schedule extends Component
 {
     public $count = 0;
+    /* public Schedule $schedule; */
 
     public function increment()
     {
@@ -15,6 +18,7 @@ class Schedule extends Component
     
     public function render()
     {
+        /* $schedules = \DB::select('select * from schedules'); */
         return view('livewire.schedule');
     }
 
