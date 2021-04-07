@@ -14,10 +14,6 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-/* Route::get('/', function () {
-    return view('index');
-}); */
-
 Route::get('/',[HomeController::class,'index'])->name('home');
 
 Route::get('/historic',[HomeController::class,'historic'])->name('historic');
