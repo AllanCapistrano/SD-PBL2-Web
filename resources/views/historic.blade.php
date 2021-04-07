@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-9 d-flex justify-content-center align-items-center">
+        <div class="col-8 offset-2 d-flex justify-content-center align-items-center">
             <table class="table table-borderless mt-5">
                 <thead>
                   <tr>
