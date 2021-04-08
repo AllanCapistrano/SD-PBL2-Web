@@ -16,7 +16,6 @@ class ShowSchedule extends Component
     protected $rules = [
         'begin' => 'required',
         'end' => 'required',
-        'on' => 'required',
     ];
 
     protected $messages = [
@@ -37,6 +36,7 @@ class ShowSchedule extends Component
     public function create(){
         $this->validate();
         
+        dd($this->on);
         if($this->on == 'true'){
             $this->on = 1;
         } else{

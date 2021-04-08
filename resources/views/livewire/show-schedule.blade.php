@@ -3,11 +3,9 @@
         <form method="post" wire:submit.prevent="create">
             @if($errors->all())
                 <div class="row d-flex justify-content-center">
-                    <div class="alert alert-danger w-50" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="background-color: #f8d7da; border: none; color: #842029;">
-                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
-                        </button>
-                        {{ $errors->first() }}
+                    <div class="alert alert-danger alert-dismissible fade show w-50" role="alert">
+                        <strong>{{ $errors->first() }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>
             @endif
@@ -27,18 +25,22 @@
 
                     <div class="col-4 mt-3 mt-lg-0">
                         <div class="align-buttons align-items-center">
-                            <div class="form-check text-white mx-2">
-                                <input class="form-check-input" type="radio" name="on" checked wire:model="on" value="true" id="rb-ligada">
+                            {{-- <div class="form-check text-white mx-2">
+                                <input class="form-check-input" type="radio" name="on" wire:model="on" value="true" id="rb-ligada" checked>
                                 <label class="form-check-label" for="rb-ligada">
                                     Ligada
                                 </label>
-                            </div>
-                            <div class="form-check text-white mx-1">
+                            </div> --}}
+                            <label class="switch">
+                                <input type="checkbox" wire:model="on" name="on">
+                                <span class="slider round"></span>
+                            </label>
+                            {{-- <div class="form-check text-white mx-1">
                                 <input class="form-check-input" type="radio" name="on" wire:model="on" value="false" id="rb-desligada">
                                 <label class="form-check-label" for="rb-desligada">
                                     Desligada
                                 </label>
-                            </div>
+                            </div> --}}
         
                             <button class="btn btn-md btn-secondary mx-3 align-self-center" type="submit">Ativar</button>
                         </div>
@@ -55,12 +57,12 @@
             <hr>
             <div class="input-group">
                 <div class="col-4 d-flex justify-content-center align-items-center">
-                    <h3 class="text-white mx-2">Início: {{$schedule->begin}}</h3>
+                    <h3 class="text-white mx-2">Início - {{$schedule->begin}}</h3>
                 </div>
 
 
                 <div class="col-4 d-flex justify-content-center align-items-center">
-                    <h3 class="text-white mx-2">Fim: {{$schedule->end}}</h3>
+                    <h3 class="text-white mx-2">Fim - {{$schedule->end}}</h3>
                 </div>
 
 

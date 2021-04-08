@@ -4,6 +4,7 @@
 
 @section('content-css')
 <link rel="stylesheet" href="{{ asset('css/schedule.css') }}">
+<link rel="stylesheet" href="{{ asset('css/switch.css') }}">
 @livewireStyles
 @endsection
 
@@ -21,7 +22,4 @@
 
 @section('content-js')
 @livewireScripts
-<script>
-    $("#rb-ligada").prop("checked", true);
-</script>
 @endsection
