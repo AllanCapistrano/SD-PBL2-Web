@@ -32,10 +32,9 @@
             @endif
         </div>
     </div>
-
     
     @if (Session::has('success-message'))
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center mt-5">
             <div class="alert alert-success alert-dismissible fade show w-50" role="alert">
                 <strong>{{ Session::get('success-message') }}</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

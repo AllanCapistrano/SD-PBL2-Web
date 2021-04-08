@@ -7,8 +7,6 @@ use App\Models\NodeMCU\Schedule;
 
 class ShowSchedule extends Component
 {
-    public $count = 0;
-    /* public Schedule $schedule; */
     public $begin;
     public $end;
     public $on;
@@ -22,17 +20,18 @@ class ShowSchedule extends Component
         'required' => 'Erro! É necessário preencher este(s) campo(s).',
     ];
 
-    public function increment()
-    {
-        $this->count++;
-    }
-
+    /**
+     * Função para renderizar o componente.
+     */
     public function render()
     {
         $schedules = Schedule::orderBy('id','desc')->get()->all();
         return view('livewire.show-schedule', ['schedules' => $schedules]);
     }
 
+    /**
+     * Função para criar um novo horário.
+     */
     public function create(){
         $this->validate();
         
@@ -59,6 +58,9 @@ class ShowSchedule extends Component
         ]);
     }
 
+    /**
+     * Função para deletar um horário.
+     */
     public function destroy($scheduleId){
     
         $schedule = Schedule::where('id', $scheduleId);
