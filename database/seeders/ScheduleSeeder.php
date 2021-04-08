@@ -14,6 +14,6 @@ class ScheduleSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Schedule::factory(10)->create();
+        \App\Models\NodeMCU\Schedule::factory(10)->create();
     }
 }
