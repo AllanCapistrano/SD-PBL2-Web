@@ -26,7 +26,7 @@ class ShowSchedule extends Component
 
     public function render()
     {
-        $schedules = \DB::select('select * from schedules');
+        $schedules = Schedule::all();
         return view('livewire.show-schedule', ['schedules' => $schedules]);
     }
 
