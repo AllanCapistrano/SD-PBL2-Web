@@ -36,11 +36,18 @@ class ShowSchedule extends Component
     public function create(){
         $this->validate();
         
-        dd($this->on);
         if($this->on == 'true'){
             $this->on = 1;
         } else{
             $this->on = 0;
+        }
+
+        $begin = strtotime($this->begin);
+        $end = strtotime($this->end);
+        $diff = $begin - $end;
+
+        if($diff >= 0){
+            return redirect()->back()->with('error','O horário de início precisa ser menor que o horário de fim!');
         }
 
         Schedule::create([
@@ -50,5 +57,12 @@ class ShowSchedule extends Component
             'updated_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
             'created_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
         ]);
+    }
+
+    public function destroy($scheduleId){
+    
+        $schedule = Schedule::where('id', $scheduleId);
+
+        $schedule->delete();
     }
 }
