@@ -19,6 +19,10 @@ class ShowSchedule extends Component
         'on' => 'required',
     ];
 
+    protected $messages = [
+        'required' => 'Erro! É necessário preencher este(s) campo(s).',
+    ];
+
     public function increment()
     {
         $this->count++;
@@ -26,7 +30,7 @@ class ShowSchedule extends Component
 
     public function render()
     {
-        $schedules = Schedule::all();
+        $schedules = Schedule::orderBy('id','desc')->get()->all();
         return view('livewire.show-schedule', ['schedules' => $schedules]);
     }
 
@@ -34,16 +38,15 @@ class ShowSchedule extends Component
         $this->validate();
         
         if($this->on == 'true'){
-            $this->on = 0;
-        } else{
             $this->on = 1;
+        } else{
+            $this->on = 0;
         }
 
         Schedule::create([
             'begin' => $this->begin,
             'end' => $this->end,
             'on' => $this->on,
-            'date' => '08/04/2021',
             'updated_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
             'created_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
         ]);

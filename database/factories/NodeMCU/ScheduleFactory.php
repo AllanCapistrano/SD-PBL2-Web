@@ -25,7 +25,6 @@ class ScheduleFactory extends Factory
             'begin' => $this->faker->time($format = 'H:i:s', $max = 'now'),
             'end' => $this->faker->time($format = 'H:i:s', $max = 'now'),
             'on' => $this->faker->boolean($chanceOfGettingTrue = 5),
-            'date' => $this->faker->date($format = 'Y/m/d', $max = 'now'),
         ];
     }
 }

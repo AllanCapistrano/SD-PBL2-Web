@@ -21,3 +21,18 @@
     display: flex; 
     flex-direction: row;
 }
+
+hr{
+    color: #fff;
+}
+
+.trash-icon{
+    font-size: 20pt;
+    color: #fff;
+    transition: .3s;
+}
+
+.trash-icon:hover{
+    color: rgb(185, 185, 185);
+    cursor: pointer;
+}
