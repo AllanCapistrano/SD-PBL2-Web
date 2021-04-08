@@ -25,23 +25,16 @@
 
                     <div class="col-4 mt-3 mt-lg-0">
                         <div class="align-buttons align-items-center">
-                            {{-- <div class="form-check text-white mx-2">
-                                <input class="form-check-input" type="radio" name="on" wire:model="on" value="true" id="rb-ligada" checked>
-                                <label class="form-check-label" for="rb-ligada">
-                                    Ligada
-                                </label>
-                            </div> --}}
+                            <label class="form-check-label mx-2" style="color: #fff">
+                                Desligada
+                            </label>
                             <label class="switch">
                                 <input type="checkbox" wire:model="on" name="on">
                                 <span class="slider round"></span>
                             </label>
-                            {{-- <div class="form-check text-white mx-1">
-                                <input class="form-check-input" type="radio" name="on" wire:model="on" value="false" id="rb-desligada">
-                                <label class="form-check-label" for="rb-desligada">
-                                    Desligada
-                                </label>
-                            </div> --}}
-        
+                            <label class="form-check-label mx-2" style="color: #fff">
+                                Ligada
+                            </label>
                             <button class="btn btn-md btn-secondary mx-3 align-self-center" type="submit">Ativar</button>
                         </div>
                     </div>
