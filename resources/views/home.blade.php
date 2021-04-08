@@ -5,6 +5,7 @@
 @section('content-css')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style-timer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/switch.css') }}">
 @endsection
 
 @section('content')
@@ -60,19 +61,18 @@
             </div>
             <div class="col-3 offset-1 col-sm-3 offset-sm-3 offset-md-4 col-lg-3 offset-lg-0 mt-3 mt-lg-0">
                 <div class="align-buttons align-items-center">
-                    <div class="form-check text-white mx-2">
-                        <input class="form-check-input" type="radio" name="radioOn" value="true" id="rb-ligada"checked>
-                        <label class="form-check-label" for="rb-ligada">
-                            Ligada
-                        </label>
-                    </div>
-                    <div class="form-check text-white mx-1">
-                        <input class="form-check-input" type="radio" name="radioOn" value="false" id="rb-desligada">
-                        <label class="form-check-label" for="rb-desligada">
-                            Desligada
-                        </label>
-                    </div>
+                    <label class="form-check-label mx-2" style="color: #fff">
+                        Desligada
+                    </label>
 
+                    <label class="switch">
+                        <input type="checkbox" name="on">
+                        <span class="slider round"></span>
+                    </label>
+
+                    <label class="form-check-label mx-2" style="color: #fff">
+                        Ligada
+                    </label>
                     <button class="btn btn-md btn-secondary mx-3 align-self-center" type="submit">Ativar</button>
                 </div>
             </div>
