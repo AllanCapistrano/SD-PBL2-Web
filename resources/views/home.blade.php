@@ -32,22 +32,42 @@
         </div>
     </div>
 
-    <div class="row mt-5">
-        <div class="col-12 offset-0 col-sm-6 offset-sm-3 col-lg-4 offset-lg-2 d-flex justify-content-center align-items-center">
-            <h3 class="text-white mx-2">Tempo: </h3>
-            <input class="form-control input-timer" type="time" name="timer" id="timer" step="1">
+    
+    @if (Session::has('success-message'))
+        <div class="row d-flex justify-content-center">
+            <div class="alert alert-success alert-dismissible fade show w-50" role="alert">
+                <strong>{{ Session::get('success-message') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         </div>
-        <div class="col-3 offset-1 col-sm-3 offset-sm-3 offset-md-4 col-lg-3 offset-lg-0 mt-3 mt-lg-0">
-            <form action="" method="POST">
+    @endif
+
+    @if ($errors->has('timer')))
+        <div class="row d-flex justify-content-center">
+            <div class="alert alert-danger alert-dismissible fade show w-50" role="alert">
+                <strong>{{ $errors->first('timer') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
+
+    <form action="{{ route('timer') }}" method="POST">
+        @csrf
+        <div class="row mt-5">
+            <div class="col-12 offset-0 col-sm-6 offset-sm-3 col-lg-4 offset-lg-2 d-flex justify-content-center align-items-center">
+                <h3 class="text-white mx-2">Tempo: </h3>
+                <input class="form-control input-timer {{ $errors->has('timer') ? 'is-invalid' : '' }}" type="time" name="timer" id="timer" step="1">
+            </div>
+            <div class="col-3 offset-1 col-sm-3 offset-sm-3 offset-md-4 col-lg-3 offset-lg-0 mt-3 mt-lg-0">
                 <div class="align-buttons align-items-center">
                     <div class="form-check text-white mx-2">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="rb-ligada"checked>
+                        <input class="form-check-input" type="radio" name="radioOn" value="true" id="rb-ligada"checked>
                         <label class="form-check-label" for="rb-ligada">
                             Ligada
                         </label>
                     </div>
                     <div class="form-check text-white mx-1">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="rb-desligada">
+                        <input class="form-check-input" type="radio" name="radioOn" value="false" id="rb-desligada">
                         <label class="form-check-label" for="rb-desligada">
                             Desligada
                         </label>
@@ -55,9 +75,9 @@
 
                     <button class="btn btn-md btn-secondary mx-3 align-self-center" type="submit">Ativar</button>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
 @endsection
 
 @section('content-js')
