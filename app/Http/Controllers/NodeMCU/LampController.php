@@ -8,6 +8,9 @@ use App\Models\NodeMCU\Lamp;
 
 class LampController extends Controller
 {
+    /*
+    * Função para ligar e desligar a lâmpada.
+    */
     public function toggleLamp()
     {
         $lamp = Lamp::get()->first();
