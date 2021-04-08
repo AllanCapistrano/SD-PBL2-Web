@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class TimerController extends Controller
 {
+    /*
+    * Função que define um novo timer.
+    */
     public function setTimer(Request $request)
     {
         $rules = [
