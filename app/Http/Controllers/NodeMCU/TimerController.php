@@ -26,7 +26,7 @@ class TimerController extends Controller
         $timer = Timer::get()->first();
         $timer->time = $request->timer;
 
-        if($request->radioOn == "true")
+        if($request->on == "on")
             $timer->on = true;
         else
             $timer->on = false;
