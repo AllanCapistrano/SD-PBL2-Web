@@ -19,19 +19,17 @@
             @endif
             <div class="row mt-5">
                 <div class="input-group mt-3">
-                    <div class="col-4 d-flex justify-content-center align-items-center">
+                    <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
                         <h3 class="text-white mx-2">Início: </h3>
                         <input style="width: 50%" class="form-control input-timer {{ $errors->has('begin') ? 'is-invalid' : '' }}" type="time" step="1" name="begin" id="begin" wire:model="begin" placeholder="Ex: 00h30m05s">
                     </div>
 
-
-                    <div class="col-4 d-flex justify-content-center align-items-center">
-                        <h3 class="text-white mx-2">Fim: </h3>
+                    <div class="col-12 mt-3 mt-md-0 col-md-4 d-flex justify-content-center align-items-center">
+                        <h3 class="text-white mx-2 custom-margin">Fim: </h3>
                         <input style="width: 50%" class="form-control input-timer {{ $errors->has('end') ? 'is-invalid' : '' }}" type="time" step="1" name="end" id="end" wire:model="end" placeholder="Ex: 00h30m05s">
                     </div>
 
-
-                    <div class="col-4 mt-lg-0">
+                    <div class="col-12 mt-3 mt-md-0 col-md-4 d-flex justify-content-center align-items-center">
                         <div class="align-buttons align-items-center switch-form">
                             <label class="form-check-label mx-2" style="color: #fff">
                                 Desligada
@@ -51,23 +49,21 @@
             </div>
         </form>
     </div>
-    <hr>
+    
     <div class="pt-5">
         <div class="row mt-5">
             @foreach ($schedules as $schedule)
             <hr>
             <div class="input-group">
-                <div class="col-4 d-flex justify-content-center align-items-center">
+                <div class="col-6 col-sm-4 d-flex justify-content-center align-items-center">
                     <h3 class="text-white mx-2">Início - {{$schedule->begin}}</h3>
                 </div>
 
-
-                <div class="col-4 d-flex justify-content-center align-items-center">
+                <div class="col-6 col-sm-4 d-flex justify-content-center align-items-center">
                     <h3 class="text-white mx-2">Fim - {{$schedule->end}}</h3>
                 </div>
 
-
-                <div class="col-4 mt-3 mt-lg-0">
+                <div class="col-12 col-sm-4 mt-lg-0 d-flex justify-content-center">
                     <div class="align-buttons align-items-center">
                         @if ($schedule->on == "1")
                             <div class="form-check text-white mx-2">

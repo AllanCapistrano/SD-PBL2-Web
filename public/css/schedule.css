@@ -37,9 +37,8 @@ hr{
     cursor: pointer;
 }
 
-@media(max-width: 960px){
-    .switch-form .form-check-label{
-        display: none;
+ @media(max-width: 767px){
+    .custom-margin{
+        margin-right: 2rem !important;
     }
-}
-
+} 
