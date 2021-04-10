@@ -36,3 +36,10 @@ hr{
     color: rgb(185, 185, 185);
     cursor: pointer;
 }
+
+@media(max-width: 960px){
+    .switch-form .form-check-label{
+        display: none;
+    }
+}
+

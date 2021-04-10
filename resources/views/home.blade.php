@@ -58,7 +58,7 @@
                 <h3 class="text-white mx-2">Tempo: </h3>
                 <input class="form-control input-timer {{ $errors->has('timer') ? 'is-invalid' : '' }}" type="time" name="timer" id="timer" step="1">
             </div>
-            <div class="col-3 offset-1 col-sm-3 offset-sm-3 offset-md-4 col-lg-3 offset-lg-0 mt-3 mt-lg-0">
+            <div class="col-3 offset-1 col-sm-6 offset-sm-4 offset-md-4 col-lg-4 offset-lg-0 mt-3 mt-lg-0">
                 <div class="align-buttons align-items-center">
                     <label class="form-check-label mx-2" style="color: #fff">
                         Desligada
@@ -72,8 +72,11 @@
                     <label class="form-check-label mx-2" style="color: #fff">
                         Ligada
                     </label>
-                    <button class="btn btn-md btn-secondary mx-3 align-self-center" type="submit">Ativar</button>
+                    
                 </div>
+            </div>
+            <div class="col-3 offset-1 col-sm-6 offset-sm-4 offset-md-4 col-lg-4 offset-lg-0 mt-3 mt-lg-0">
+                <button class="btn btn-md btn-secondary mx-3 align-self-center" type="submit">Ativar</button>
             </div>
         </div>
     </form>

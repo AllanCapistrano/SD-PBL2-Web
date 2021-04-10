@@ -31,8 +31,8 @@
                     </div>
 
 
-                    <div class="col-4 mt-3 mt-lg-0">
-                        <div class="align-buttons align-items-center">
+                    <div class="col-4 mt-lg-0">
+                        <div class="align-buttons align-items-center switch-form">
                             <label class="form-check-label mx-2" style="color: #fff">
                                 Desligada
                             </label>
