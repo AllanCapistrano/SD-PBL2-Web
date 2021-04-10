@@ -32,14 +32,14 @@
                     <div class="col-12 mt-3 mt-md-0 col-md-4 d-flex justify-content-center align-items-center">
                         <div class="align-buttons align-items-center switch-form">
                             <label class="form-check-label mx-2" style="color: #fff">
-                                Desligada
+                                Desligar
                             </label>
                             <label class="switch">
                                 <input type="checkbox" wire:model="on" name="on">
                                 <span class="slider round"></span>
                             </label>
                             <label class="form-check-label mx-2" style="color: #fff">
-                                Ligada
+                                Ligar
                             </label>
                             <button class="btn btn-md btn-secondary mx-3 align-self-center" type="submit">Ativar</button>
                         </div>
@@ -49,7 +49,7 @@
             </div>
         </form>
     </div>
-    
+
     <div class="pt-5">
         <div class="row mt-5">
             @foreach ($schedules as $schedule)
@@ -68,13 +68,13 @@
                         @if ($schedule->on == "1")
                             <div class="form-check text-white mx-2">
                                 <label class="form-check-label" for="">
-                                    <h3>Ligada &nbsp;&nbsp;&nbsp;</h3>
+                                    <h3>Ligar &nbsp;&nbsp;&nbsp;</h3>
                                 </label>
                             </div>
                         @else
                             <div class="form-check text-white mx-1">
                                 <label class="form-check-label" for="">
-                                    <h3>Desligada</h3>
+                                    <h3>Desligar</h3>
                                 </label>
                             </div>
                         @endif

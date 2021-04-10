@@ -61,7 +61,7 @@
             <div class="col-6 offset-4 col-sm-6 offset-sm-4 col-md-3 offset-md-4 col-lg-2 offset-lg-0 mt-3 mt-lg-0 d-flex justify-content-center">
                 <div class="align-buttons align-items-center">
                     <label class="form-check-label mx-2" style="color: #fff">
-                        Desligada
+                        Desligar
                     </label>
 
                     <label class="switch">
@@ -70,7 +70,7 @@
                     </label>
 
                     <label class="form-check-label mx-2" style="color: #fff">
-                        Ligada
+                        Ligar
                     </label>
                     
                 </div>
