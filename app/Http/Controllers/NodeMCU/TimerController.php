@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\NodeMCU;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TimerRequest;
 use App\Models\NodeMCU\Lamp;
 use App\Models\NodeMCU\Timer;
 use Illuminate\Http\Request;
@@ -12,17 +13,9 @@ class TimerController extends Controller
     /*
     * Função que define um novo timer.
     */
-    public function setTimer(Request $request)
+    public function setTimer(TimerRequest $request)
     {
-        $rules = [
-            'timer' => 'required',
-        ];
-
-        $messages = [
-            'required' => 'Erro! É necessário preencher este campo.',
-        ];
-
-        $request->validate($rules, $messages);
+        $request->validated();
 
         $timer = Timer::get()->first();
         $lamp = Lamp::get()->first();
