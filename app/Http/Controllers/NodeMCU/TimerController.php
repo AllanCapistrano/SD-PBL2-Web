@@ -25,21 +25,26 @@ class TimerController extends Controller
         
         if($request->on == "on"){
             $timer->on = true;
-
             $lamp->on = true;
+            $ledControl = 0; // Por causa da lógica invertida do LED.
         }
         else{
             $timer->on = false;
-            
             $lamp->on = false;
+            $ledControl = 1; // Por causa da lógica invertida do LED.
         }
 
         /*MQTT publish*/
         $temp = explode(":", $request->timer);
-        $timerPublish = $temp[0]."h".$temp[1]."m".$temp[2]."s";
+        
+        if (count($temp) == 3){
+            $timerPublish = $temp[0]."h".$temp[1]."m".$temp[2]."s";
+        } else if (count($temp) == 2) {
+            $timerPublish = $temp[0]."h".$temp[1]."m"."00s";
+        }
 
         $mqtt = MQTT::connection();
-        $mqtt->publish('timerInTopic', '{"LED_Control": '.$lamp->on.', "time:" '.$timerPublish.'}');
+        $mqtt->publish('timerInTopic', '{"LED_Control": '.$ledControl.', "time": '.$timerPublish.',}');
 
         $timer->save();
         $lamp->save();
