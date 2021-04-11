@@ -7,6 +7,7 @@ use App\Http\Requests\TimerRequest;
 use App\Models\NodeMCU\Lamp;
 use App\Models\NodeMCU\Timer;
 use Illuminate\Http\Request;
+use PhpMqtt\Client\Facades\MQTT;
 
 class TimerController extends Controller
 {
@@ -32,6 +33,13 @@ class TimerController extends Controller
             
             $lamp->on = false;
         }
+
+        /*MQTT publish*/
+        $temp = explode(":", $request->timer);
+        $timerPublish = $temp[0]."h".$temp[1]."m".$temp[2]."s";
+
+        $mqtt = MQTT::connection();
+        $mqtt->publish('timerInTopic', '{"LED_Control": '.$lamp->on.', "time:" '.$timerPublish.'}');
 
         $timer->save();
         $lamp->save();
