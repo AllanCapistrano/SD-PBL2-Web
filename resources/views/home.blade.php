@@ -42,6 +42,15 @@
         </div>
     @endif
 
+    @if (Session::has('error-message'))
+        <div class="row d-flex justify-content-center mt-5">
+            <div class="alert alert-danger alert-dismissible fade show w-50" role="alert">
+                <strong>{{ Session::get('error-message') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    @endif
+
     @if ($errors->has('timer')))
         <div class="row d-flex justify-content-center">
             <div class="alert alert-danger alert-dismissible fade show w-50" role="alert">

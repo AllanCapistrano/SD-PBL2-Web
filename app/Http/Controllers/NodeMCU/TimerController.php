@@ -22,6 +22,8 @@ class TimerController extends Controller
         $lamp = Lamp::get()->first();
         
         $timer->time = $request->timer;
+
+        $lampPrevious = $lamp->on;
         
         if($request->on == "on"){
             $timer->on = true;
@@ -34,22 +36,32 @@ class TimerController extends Controller
             $ledControl = 1; // Por causa da lógica invertida do LED.
         }
 
-        /*MQTT publish*/
-        $temp = explode(":", $request->timer);
-        
-        if (count($temp) == 3){
-            $timerPublish = $temp[0]."h".$temp[1]."m".$temp[2]."s";
-        } else if (count($temp) == 2) {
-            $timerPublish = $temp[0]."h".$temp[1]."m"."00s";
+        if($lampPrevious != $timer->on){
+            /*MQTT publish*/
+            $temp = explode(":", $request->timer);
+            
+            if (count($temp) == 3){
+                $timerPublish = $temp[0]."h".$temp[1]."m".$temp[2]."s";
+            } else if (count($temp) == 2) {
+                $timerPublish = $temp[0]."h".$temp[1]."m"."00s";
+            }
+    
+            $mqtt = MQTT::connection();
+            $mqtt->publish('timerInTopic', '{"LED_Control": '.$ledControl.', "time": '.$timerPublish.',}');
+    
+            $timer->save();
+            $lamp->save();
+    
+            $success = "Timer definido com sucesso!";
+            
+            return redirect()->back()->with('success-message', $success);
         }
 
-        $mqtt = MQTT::connection();
-        $mqtt->publish('timerInTopic', '{"LED_Control": '.$ledControl.', "time": '.$timerPublish.',}');
+        $status = ($lampPrevious) ? "Ligada!" : "Desligada!";
 
-        $timer->save();
-        $lamp->save();
+        $error = "A lâmpada já está ".$status;
 
-        $success = "Timer definido com sucesso!";
-        return redirect()->back()->with('success-message', $success);
+        return redirect()->back()->with('error-message', $error);
+
     }
 }
