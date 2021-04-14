@@ -34,6 +34,6 @@ class LampController extends Controller
 
         $lamp->save();
 
-        return redirect()->back()->with('message', $this->message);
+        return redirect()->back();
     }
 }
