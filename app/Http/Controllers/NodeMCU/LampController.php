@@ -15,22 +15,12 @@ class LampController extends Controller
     public function toggleLamp()
     {
         $lamp = Lamp::get()->first();
-        
-        $mqtt = MQTT::connection();
-        $mqtt->publish('lampInTopic', '{"LED_Control": '.$lamp->on.',}');
 
-        $message = "";
-        
-        $mqtt->subscribe('lampOutTopic', function (string $topic, string $message, bool $retained) use ($mqtt) {
-                $this->message = $message;
-                
-            $mqtt->interrupt();
-        }, 0);
-    
-        $mqtt->loop(true);
-        $mqtt->disconnect();
+        $this->publish($lamp->on);
 
-        if($this->message == "success"){
+        $status = $this->validateToggleLamp();
+
+        if($status == "success"){
             $lamp->on = !$lamp->on;
     
             $lamp->save();
@@ -39,5 +29,35 @@ class LampController extends Controller
         } else {
             return redirect()->back()->with("error-message", "Falha ao executar a ação!");
         }
+    }
+
+    /**
+     * Função responsável por publicar o estado da lâmpada para o tópico.
+     * @param bool        $lampStatus
+     */
+    private function publish($lampStatus)
+    {
+        $mqtt = MQTT::connection();
+        $mqtt->publish('lampInTopic', '{"LED_Control": '.$lampStatus.',}');
+    }
+
+    /**
+     * Função responsável por validar se a ação foi realiada com sucesso.
+     * @return string
+     */
+    private function validateToggleLamp()
+    {
+        $mqtt = MQTT::connection();
+
+        $mqtt->subscribe('lampOutTopic', function (string $topic, string $message, bool $retained) use ($mqtt) {
+            $this->message = $message;
+            
+            $mqtt->interrupt();
+        }, 0);
+
+        $mqtt->loop(true);
+        $mqtt->disconnect();
+
+        return $this->message;
     }
 }
