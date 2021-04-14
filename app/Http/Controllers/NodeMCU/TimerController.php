@@ -49,12 +49,27 @@ class TimerController extends Controller
             $mqtt = MQTT::connection();
             $mqtt->publish('timerInTopic', '{"LED_Control": '.$ledControl.', "time": '.$timerPublish.',}');
     
-            $timer->save();
-            $lamp->save();
-    
-            $success = "Timer definido com sucesso!";
+            $message = "";
+        
+            $mqtt->subscribe('timerOutTopic', function (string $topic, string $message, bool $retained) use ($mqtt) {
+                    $this->message = $message;
+                    
+                $mqtt->interrupt();
+            }, 0);
+        
+            $mqtt->loop(true);
+            $mqtt->disconnect();
+
+            if($this->message == "success"){
+                $timer->save();
+                $lamp->save();
+
+                $success = "Timer definido com sucesso!";
             
-            return redirect()->back()->with('success-message', $success);
+                return redirect()->back()->with('success-message', $success);
+            } else {
+                return redirect()->back()->with("error-message", "Falha ao executar a ação!");
+            }
         }
 
         $status = ($lampPrevious) ? "Ligada!" : "Desligada!";
