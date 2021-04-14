@@ -64,7 +64,7 @@
         @csrf
         <div class="row mt-5">
             <div class="col-12 offset-0 col-sm-6 offset-sm-3 col-lg-4 offset-lg-2 d-flex justify-content-center align-items-center">
-                <h3 class="text-white mx-2">Tempo: </h3>
+                <h3 class="text-white mx-2">Temporizador: </h3>
                 <input class="form-control input-timer {{ $errors->has('timer') ? 'is-invalid' : '' }}" type="time" name="timer" id="timer" step="1">
             </div>
             <div class="col-6 offset-4 col-sm-6 offset-sm-4 col-md-3 offset-md-4 col-lg-2 offset-lg-0 mt-3 mt-lg-0 d-flex justify-content-center">
