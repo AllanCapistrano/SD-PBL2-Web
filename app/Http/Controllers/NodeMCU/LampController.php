@@ -33,12 +33,12 @@ class LampController extends Controller
 
     /**
      * Função responsável por publicar o estado da lâmpada para o tópico.
-     * @param bool        $lampStatus
+     * @param bool        $ledControl
      */
-    private function publish($lampStatus)
+    private function publish($ledControl)
     {
         $mqtt = MQTT::connection();
-        $mqtt->publish('lampInTopic', '{"LED_Control": '.$lampStatus.',}');
+        $mqtt->publish('lampInTopic', '{"LED_Control": '.$ledControl.',}');
     }
 
     /**
