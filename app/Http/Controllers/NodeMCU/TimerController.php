@@ -11,9 +11,11 @@ use PhpMqtt\Client\Facades\MQTT;
 
 class TimerController extends Controller
 {
-    /*
-    * Função que define um novo timer.
-    */
+
+    /**
+     *  Função que define um novo timer.
+     * @param TimerRequest $request
+     */
     public function setTimer(TimerRequest $request)
     {
         $request->validated();
@@ -37,30 +39,13 @@ class TimerController extends Controller
         }
 
         if($lampPrevious != $timer->on){
-            /*MQTT publish*/
-            $temp = explode(":", $request->timer);
-            
-            if (count($temp) == 3){
-                $timerPublish = $temp[0]."h".$temp[1]."m".$temp[2]."s";
-            } else if (count($temp) == 2) {
-                $timerPublish = $temp[0]."h".$temp[1]."m"."00s";
-            }
-    
-            $mqtt = MQTT::connection();
-            $mqtt->publish('timerInTopic', '{"LED_Control": '.$ledControl.', "time": '.$timerPublish.',}');
-    
-            $message = "";
-        
-            $mqtt->subscribe('timerOutTopic', function (string $topic, string $message, bool $retained) use ($mqtt) {
-                    $this->message = $message;
-                    
-                $mqtt->interrupt();
-            }, 0);
-        
-            $mqtt->loop(true);
-            $mqtt->disconnect();
+            $timerPublish = $this->formatTimer($request->timer);
 
-            if($this->message == "success"){
+            $this->publish($ledControl, $timerPublish);
+
+            $status = $this->validateSetTimer();
+
+            if($status == "success"){
                 $timer->save();
                 $lamp->save();
 
@@ -77,6 +62,54 @@ class TimerController extends Controller
         $error = "A lâmpada já está ".$status;
 
         return redirect()->back()->with('error-message', $error);
+    }
 
+    /**
+     * Função responsável por formatar o temporizador.
+     * @param string      $time
+     * @return string
+     */
+    private function formatTimer($time)
+    {
+        $temp = explode(":", $time);
+            
+        if (count($temp) == 3){
+            $timerFormated = $temp[0]."h".$temp[1]."m".$temp[2]."s";
+        } else if (count($temp) == 2) {
+            $timerFormated = $temp[0]."h".$temp[1]."m"."00s";
+        }
+
+        return $timerFormated;
+    }
+
+    /**
+     * Função responsável por publicar o temporizzador para o tópico.
+     * @param bool        $ledControl
+     * @param string      $timerPublish
+     */
+    private function publish($ledControl, $timerPublish)
+    {
+        $mqtt = MQTT::connection();
+        $mqtt->publish('timerInTopic', '{"LED_Control": '.$ledControl.', "time": '.$timerPublish.',}');
+    }
+    
+    /**
+     * Função responsável por validar se a ação foi realiada com sucesso.
+     * @return string
+     */
+    private function validateSetTimer()
+    {
+        $mqtt = MQTT::connection();
+
+        $mqtt->subscribe('timerOutTopic', function (string $topic, string $message, bool $retained) use ($mqtt) {
+            $this->message = $message;
+            
+            $mqtt->interrupt();
+        }, 0);
+
+        $mqtt->loop(true);
+        $mqtt->disconnect();
+
+        return $this->message;
     }
 }
