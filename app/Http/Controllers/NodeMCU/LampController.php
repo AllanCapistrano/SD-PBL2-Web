@@ -37,7 +37,7 @@ class LampController extends Controller
 
             return redirect()->back();
         } else {
-            return redirect()->back()->with("error-message", "Falha executar a ação!");
+            return redirect()->back()->with("error-message", "Falha ao executar a ação!");
         }
     }
 }
