@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\NodeMCU\Schedule;
+use PhpMqtt\Client\Facades\MQTT;
 
 class ShowSchedule extends Component
 {
@@ -36,9 +37,13 @@ class ShowSchedule extends Component
         $this->validate();
         
         if($this->on == 'true'){
-            $this->on = 1;
+            //$this->on = 1;
+            $on = 1;
+            $ledControl = 0;
         } else{
-            $this->on = 0;
+            //$this->on = 0;
+            $on = 0;
+            $ledControl = 1;
         }
 
         $begin = strtotime($this->begin);
@@ -49,10 +54,25 @@ class ShowSchedule extends Component
             return redirect()->back()->with('error','O horário de início precisa ser menor que o horário de fim!');
         }
 
+        /*MQTT publish*/
+        $temp = explode(":", $this->begin);
+        $temp2 = explode(":", $this->end);
+            
+        if (count($temp) == 3){
+            $beginPublish = $temp[0]."h".$temp[1]."m".$temp[2]."s";
+            $endPublish = $temp2[0]."h".$temp2[1]."m".$temp2[2]."s";
+        } else if (count($temp) == 2) {
+            $beginPublish = $temp[0]."h".$temp[1]."m"."00s";
+            $endPublish = $temp2[0]."h".$temp2[1]."m"."00s";
+        }
+
+        $mqtt = MQTT::connection();
+        $mqtt->publish('scheduleInTopic', '{"LED_Control": '.$ledControl.', "begin": '.$beginPublish.', "end": '.$endPublish.',}');
+
         Schedule::create([
             'begin' => $this->begin,
             'end' => $this->end,
-            'on' => $this->on,
+            'on' => $on,
             'updated_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
             'created_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
         ]);
