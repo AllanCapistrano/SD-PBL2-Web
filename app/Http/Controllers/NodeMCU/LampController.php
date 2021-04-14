@@ -19,7 +19,8 @@ class LampController extends Controller
         $mqtt = MQTT::connection();
         $mqtt->publish('lampInTopic', '{"LED_Control": '.$lamp->on.',}');
 
-        $message;
+        $message = "";
+        
         $mqtt->subscribe('lampOutTopic', function (string $topic, string $message, bool $retained) use ($mqtt) {
                 $this->message = $message;
                 
@@ -27,13 +28,16 @@ class LampController extends Controller
         }, 0);
     
         $mqtt->loop(true);
-    
         $mqtt->disconnect();
 
-        $lamp->on = !$lamp->on;
+        if($this->message == "success"){
+            $lamp->on = !$lamp->on;
+    
+            $lamp->save();
 
-        $lamp->save();
-
-        return redirect()->back();
+            return redirect()->back();
+        } else {
+            return redirect()->back()->with("error-message", "Falha executar a ação!");
+        }
     }
 }
