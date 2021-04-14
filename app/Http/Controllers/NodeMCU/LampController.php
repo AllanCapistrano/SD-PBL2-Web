@@ -18,10 +18,22 @@ class LampController extends Controller
         
         $mqtt = MQTT::connection();
         $mqtt->publish('lampInTopic', '{"LED_Control": '.$lamp->on.',}');
+
+        $message;
+        $mqtt->subscribe('lampOutTopic', function (string $topic, string $message, bool $retained) use ($mqtt) {
+                $this->message = $message;
+                
+            $mqtt->interrupt();
+        }, 0);
+    
+        $mqtt->loop(true);
+    
+        $mqtt->disconnect();
+
         $lamp->on = !$lamp->on;
 
         $lamp->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', $this->message);
     }
 }
