@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TariffRequest;
 use App\Models\Tariff;
 use Illuminate\Http\Request;
 
@@ -33,9 +34,25 @@ class TariffController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TariffRequest $request)
     {
-        //
+        $request->validated();
+
+        $existTariff = Tariff::where('date', $request->date."-01")->get()->first();
+
+        
+        if(isset($existTariff)) {
+            $existTariff->value = $request->value;
+            
+            $existTariff->save();
+        } else {
+            $tariff = new Tariff();
+            $tariff->value = $request->value;
+            $tariff->date = $request->date."-01";
+            $tariff->save();
+        }
+
+        return redirect()->back();
     }
 
     /**

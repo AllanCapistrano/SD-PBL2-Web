@@ -10,3 +10,9 @@ tbody{
 thead tr th, tbody tr th{
     text-align: center;
 }
+
+@media (max-width: 767px) {
+    .custom-width {
+        width: 50% !important;
+    }
+}

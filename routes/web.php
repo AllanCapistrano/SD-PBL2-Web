@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NodeMCU\LampController;
 use App\Http\Controllers\NodeMCU\TimerController;
+use App\Http\Controllers\TariffController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::post('/timer', [TimerController::class, 'setTimer'])->name('timer');
 /*-------------------- Página História ---------------------------------------*/
 /*Rota para acessar a página de histórico */
 Route::get('/historic',[HomeController::class,'historic'])->name('historic');
+Route::post('historic/tariff/store', [TariffController::class, 'store'])->name('tariff.store');
 
 /*----------------------------------------------------------------------------*/
 
