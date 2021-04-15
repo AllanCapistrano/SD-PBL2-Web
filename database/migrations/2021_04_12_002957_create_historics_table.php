@@ -17,9 +17,10 @@ class CreateHistoricsTable extends Migration
             $table->id();
             $table->float('engergy_cons');
             $table->time('time_on');
-            $table->float('energy_tariff', 8, 2);
             $table->float('price', 8, 2);
             $table->date('date');
+            $table->unsignedBigInteger('tariff_id');
+            $table->foreign('tariff_id')->references('id')->on('tariffs')->onDelete('cascade');
             $table->timestamps();
         });
     }
