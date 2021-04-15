@@ -37,11 +37,9 @@ class ShowSchedule extends Component
         $this->validate();
         
         if($this->on == 'true'){
-            //$this->on = 1;
             $on = 1;
             $ledControl = 0;
         } else{
-            //$this->on = 0;
             $on = 0;
             $ledControl = 1;
         }
@@ -54,28 +52,26 @@ class ShowSchedule extends Component
             return redirect()->back()->with('error','O horário de início precisa ser menor que o horário de fim!');
         }
 
-        /*MQTT publish*/
-        $temp = explode(":", $this->begin);
-        $temp2 = explode(":", $this->end);
-            
-        if (count($temp) == 3){
-            $beginPublish = $temp[0]."h".$temp[1]."m".$temp[2]."s";
-            $endPublish = $temp2[0]."h".$temp2[1]."m".$temp2[2]."s";
-        } else if (count($temp) == 2) {
-            $beginPublish = $temp[0]."h".$temp[1]."m"."00s";
-            $endPublish = $temp2[0]."h".$temp2[1]."m"."00s";
+        $beginPublish = $this->formatTime($this->begin);
+        $endPublish = $this->formatTime($this->end);
+
+        $this->publish($ledControl, $beginPublish, $endPublish);
+
+        $status = $this->validateCreateSchedule();
+
+        if($status == "success"){
+            Schedule::create([
+                'begin' => $this->begin,
+                'end' => $this->end,
+                'on' => $on,
+                'updated_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
+                'created_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
+            ]);
+        } else {
+            return redirect()->back()->with("error", "Falha ao executar a ação!");
         }
 
-        $mqtt = MQTT::connection();
-        $mqtt->publish('scheduleInTopic', '{"LED_Control": '.$ledControl.', "begin": '.$beginPublish.', "end": '.$endPublish.',}');
-
-        Schedule::create([
-            'begin' => $this->begin,
-            'end' => $this->end,
-            'on' => $on,
-            'updated_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
-            'created_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
-        ]);
+        
     }
 
     /**
@@ -86,5 +82,55 @@ class ShowSchedule extends Component
         $schedule = Schedule::where('id', $scheduleId);
 
         $schedule->delete();
+    }
+
+    /**
+     * Função responsável por formatar o horário.
+     * @param string      $time
+     * @return string
+     */
+    private function formatTime($time)
+    {
+        $temp = explode(":", $time);
+            
+        if (count($temp) == 3){
+            $timeFormated = $temp[0]."h".$temp[1]."m".$temp[2]."s";
+        } else if (count($temp) == 2) {
+            $timeFormated = $temp[0]."h".$temp[1]."m"."00s";
+        }
+
+        return $timeFormated;
+    }
+
+    /**
+     * Função responsável por publicar o temporizzador para o tópico.
+     * @param bool        $ledControl
+     * @param string      $beginPublish
+     * @param string      $endPublish
+     */
+    private function publish($ledControl, $beginPublish, $endPublish)
+    {
+        $mqtt = MQTT::connection();
+        $mqtt->publish('scheduleInTopic', '{"LED_Control": '.$ledControl.', "begin": '.$beginPublish.', "end": '.$endPublish.',}');
+    }
+    
+    /**
+     * Função responsável por validar se a ação foi realiada com sucesso.
+     * @return string
+     */
+    private function validateCreateSchedule()
+    {
+        $mqtt = MQTT::connection();
+
+        $mqtt->subscribe('scheduleOutTopic', function (string $topic, string $message, bool $retained) use ($mqtt) {
+            $this->message = $message;
+            
+            $mqtt->interrupt();
+        }, 0);
+
+        $mqtt->loop(true);
+        $mqtt->disconnect();
+
+        return $this->message;
     }
 }
