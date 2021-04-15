@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">12/04/2021</th>
+                    <th scope="row">14/04/2021</th>
                     <th>1000 Wh</th>
                     <th>R$ 380,00</th>
                   </tr>
@@ -36,7 +36,7 @@
                     <th>R$ 349,60</th>
                   </tr>
                   <tr>
-                    <th scope="row">14/04/2021</th>
+                    <th scope="row">12/04/2021</th>
                     <th>896 Wh</th>
                     <th>R$ 340,40</th>
                   </tr>
