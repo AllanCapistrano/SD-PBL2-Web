@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LampSeeder::class);
         $this->call(ScheduleSeeder::class);
         $this->call(TimerSeeder::class);
+        $this->call(TariffSeeder::class);
     }
 }
