@@ -38,19 +38,7 @@ class TariffController extends Controller
     {
         $request->validated();
 
-        $existTariff = Tariff::where('date', $request->date."-01")->get()->first();
-
-        
-        if(isset($existTariff)) {
-            $existTariff->value = $request->value;
-            
-            $existTariff->save();
-        } else {
-            $tariff = new Tariff();
-            $tariff->value = $request->value;
-            $tariff->date = $request->date."-01";
-            $tariff->save();
-        }
+        Tariff::verifyTariff($request->value, $request->date."-01");
 
         return redirect()->back();
     }
