@@ -9,8 +9,4 @@ class Historic extends Model
 {
     use HasFactory;
 
-    public function tariff()
-    {
-        return $this->belongsTo(Tariff::class);
-    }
 }
