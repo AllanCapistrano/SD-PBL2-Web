@@ -9,8 +9,21 @@ class Tariff extends Model
 {
     use HasFactory;
 
-    public function historic()
+    public static function verifyTariff($value, $date)
     {
-        return $this->hasMany(Historic::class);
+        $existTariff = Tariff::where('date', $date)->get()->first();
+
+        /*Quando alterar a tarifa, vai ter que atualiazar todos os preços que estão
+        relacionadas com a mesma. */
+        if(isset($existTariff)) {
+            $existTariff->value = $value;
+            
+            $existTariff->save();
+        } else {
+            $tariff = new Tariff();
+            $tariff->value = $value;
+            $tariff->date = $date;
+            $tariff->save();
+        }
     }
 }
