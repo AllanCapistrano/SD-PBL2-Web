@@ -49,7 +49,7 @@ class LampController extends Controller
     {
         $mqtt = MQTT::connection();
 
-        $mqtt->subscribe('lampOutTopic', function (string $topic, string $message, bool $retained) use ($mqtt) {
+        $mqtt->subscribe('lampMessage', function (string $topic, string $message, bool $retained) use ($mqtt) {
             $this->message = $message;
             
             $mqtt->interrupt();
