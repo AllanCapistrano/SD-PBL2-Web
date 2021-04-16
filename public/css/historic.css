@@ -11,6 +11,21 @@ thead tr th, tbody tr th{
     text-align: center;
 }
 
+.refresh-icon{
+    font-size: 20pt;
+    color: #fff;
+    transition: .3s;
+}
+
+.refresh-icon:hover{
+    color: rgb(185, 185, 185);
+    cursor: pointer;
+}
+
+.mt-custom {
+    margin-top: 8rem!important;
+}
+
 @media (max-width: 767px) {
     .custom-width {
         width: 50% !important;

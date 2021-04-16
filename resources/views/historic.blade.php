@@ -6,9 +6,18 @@
 <link rel="stylesheet" href="{{ asset('css/historic.css') }}">
 @endsection
 
-
-
 @section('content')
+    <form action="" method="post" id="refresh_form" onsubmit="return false">
+        @csrf
+        <div class="row mt-3">
+            <div class="col-12">
+                <a class="mx-3 navbar-brand refresh-icon" onclick="document.getElementById('refresh_form').submit();">
+                    <i class="fas fa-sync-alt"></i> Atualizar
+                </a>
+            </div>
+        </div>
+    </form>
+
     @if ($errors->has('value') || $errors->has('date'))
         <div class="row d-flex justify-content-center mt-5">
             <div class="alert alert-danger alert-dismissible fade show w-50" role="alert">
@@ -20,7 +29,7 @@
 
     <form action="{{ route('tariff.store') }}" method="post">
         @csrf
-        <div class="row mt-5">
+        <div class="row mt-custom">
             <div class="col-12 col-md-3 col-xl-2 offset-xl-1 d-flex justify-content-center">
                 <h3 style="color: #fff">Tarifa Mensal:</h3>
             </div>
