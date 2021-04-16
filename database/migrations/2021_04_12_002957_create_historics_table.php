@@ -15,7 +15,7 @@ class CreateHistoricsTable extends Migration
     {
         Schema::create('historics', function (Blueprint $table) {
             $table->id();
-            $table->float('engergy_cons');
+            $table->float('energy_cons');
             $table->time('time_on');
             $table->float('price', 8, 2);
             $table->date('date');

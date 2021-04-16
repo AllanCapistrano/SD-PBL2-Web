@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <form action="" method="post" id="refresh_form" onsubmit="return false">
+    <form action="{{ route('refresh') }}" method="post" id="refresh_form" onsubmit="return false">
         @csrf
         <div class="row mt-3">
             <div class="col-12">

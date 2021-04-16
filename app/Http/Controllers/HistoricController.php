@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PhpMqtt\Client\Facades\MQTT;
 
 class HistoricController extends Controller
 {
@@ -16,5 +17,21 @@ class HistoricController extends Controller
     {
         
     }
+
+    public function refresh(Request $request)
+    {
+        $this->publish();
+
+        return redirect()->back();
+    }
     
+    /**
+     * Função responsável por publicar o estado da lâmpada para o tópico.
+     * @param bool        $ledControl
+     */
+    private function publish()
+    {
+        $mqtt = MQTT::connection();
+        $mqtt->publish('historicInTopic', 'refresh');
+    }
 }
