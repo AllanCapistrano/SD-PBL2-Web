@@ -55,15 +55,19 @@
             @foreach ($schedules as $schedule)
             <hr>
             <div class="input-group">
-                <div class="col-6 col-sm-4 d-flex justify-content-center align-items-center">
+                <div class="col-6 col-sm-3 d-flex justify-content-center align-items-center">
                     <h3 class="text-white mx-2">Início - {{$schedule->begin}}</h3>
                 </div>
 
-                <div class="col-6 col-sm-4 d-flex justify-content-center align-items-center">
+                <div class="col-6 col-sm-3 d-flex justify-content-center align-items-center">
                     <h3 class="text-white mx-2">Fim - {{$schedule->end}}</h3>
                 </div>
 
-                <div class="col-12 col-sm-4 mt-lg-0 d-flex justify-content-center">
+                <div class="col-6 col-sm-3 d-flex justify-content-center align-items-center">
+                    <h3 class="text-white mx-2">Data - {{\Carbon\Carbon::parse($schedule->created_at)->format('d/m/Y')}}</h3>
+                </div>
+
+                <div class="col-6 col-sm-3 mt-lg-0 d-flex justify-content-center">
                     <div class="align-buttons align-items-center">
                         @if ($schedule->on == "1")
                             <div class="form-check text-white mx-2">
