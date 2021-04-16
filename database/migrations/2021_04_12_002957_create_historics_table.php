@@ -16,11 +16,9 @@ class CreateHistoricsTable extends Migration
         Schema::create('historics', function (Blueprint $table) {
             $table->id();
             $table->float('energy_cons');
-            $table->time('time_on');
+            $table->float('time_on');
             $table->float('price', 8, 2);
             $table->date('date');
-            $table->unsignedBigInteger('tariff_id');
-            $table->foreign('tariff_id')->references('id')->on('tariffs')->onDelete('cascade');
             $table->timestamps();
         });
     }
