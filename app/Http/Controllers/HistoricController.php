@@ -21,31 +21,47 @@ class HistoricController extends Controller
     }
 
     /**
-     * Função para atualizar o histórico
+     * Função para atualização o histórico.
      */
     public function refresh()
     {
-        
         $this->publish();
         
         $timeOn = floatval ($this->subscribe()); /*Colocar para horas. */
+        
         /*60W foi a potência escolhida para a lâmpada.*/
         $energyCons = 60 * $timeOn; /*Consumo = Potência * Tempo */
         
         $date = \Carbon\Carbon::now("America/Sao_Paulo");
+        
+        $existHistoric = Historic::where('date', \Carbon\Carbon::parse($date)->format('Y-m-d'))->first();
+
         $date = \Carbon\Carbon::parse($date)->format('Y-m');
-
-        $historic = new Historic();
-        $historic->energy_cons = $energyCons;
-        $historic->time_on = $timeOn;
-        $historic->price = $this->verifyTariff($date) * $energyCons;
-        $historic->date = \Carbon\Carbon::parse(\Carbon\Carbon::now("America/Sao_Paulo"))->format('Y-m-d');
-
-        $historic->save();
-
+        
+        if(!isset($existHistoric)){ /*Se não existir.*/
+            $historic = new Historic();
+            $historic->energy_cons = $energyCons;
+            $historic->time_on = $timeOn;
+            $historic->price = $this->verifyTariff($date) * $energyCons;
+            $historic->date = \Carbon\Carbon::parse(\Carbon\Carbon::now("America/Sao_Paulo"))->format('Y-m-d');
+            
+            $historic->save();
+        } else {
+            $existHistoric->time_on = $timeOn;
+            $existHistoric->energy_cons = $energyCons;
+            $existHistoric->price = ($this->verifyTariff($date) * $energyCons) + $existHistoric->price;
+            
+            $existHistoric->save();
+        }
+        
         return redirect()->back();
     }
 
+    /**
+     * Verificar se a tarifa do mês vigente já existe
+     * @param String $date
+     * @return float
+     */
     private function verifyTariff($date)
     {
         $date = $date."-01";
@@ -62,8 +78,6 @@ class HistoricController extends Controller
 
             return $tariff->value;
         }
-
-
     }
     
     /**
