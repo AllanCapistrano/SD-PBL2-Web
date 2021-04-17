@@ -27,7 +27,8 @@ class HistoricController extends Controller
     {
         $this->publish();
         
-        $timeOn = floatval ($this->subscribe()); /*Colocar para horas. */
+        /*Convertendo o tempo recebido em segundos, para horas */
+        $timeOn = floatval($this->subscribe()) / 3600;
         
         /*60W foi a potência escolhida para a lâmpada.*/
         $energyCons = 60 * $timeOn; /*Consumo = Potência * Tempo */
@@ -49,7 +50,7 @@ class HistoricController extends Controller
         } else {
             $existHistoric->time_on = $timeOn;
             $existHistoric->energy_cons = $energyCons;
-            $existHistoric->price = ($this->verifyTariff($date) * $energyCons) + $existHistoric->price;
+            $existHistoric->price = $this->verifyTariff($date) * $energyCons;
             
             $existHistoric->save();
         }
