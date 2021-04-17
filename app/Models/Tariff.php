@@ -9,14 +9,27 @@ class Tariff extends Model
 {
     use HasFactory;
 
+    /**
+     * Função responsável por verificar se a tarifa existe.
+     * @param float $value
+     * @param string $date
+     * @return void
+     */
     public static function verifyTariff($value, $date)
     {
         $existTariff = Tariff::where('date', $date)->get()->first();
 
-        /*Quando alterar a tarifa, vai ter que atualiazar todos os preços que estão
-        relacionadas com a mesma. */
-        if(isset($existTariff)) {
+        if(isset($existTariff)) { /*Se a tarifa existir */
             $existTariff->value = $value;
+
+            $temp = explode('-', $date);
+            $historics = Historic::where('date', 'like', '%'.$temp[1].'%')->get();
+
+            foreach($historics as $historic) {
+                $historic->price = $existTariff->value * $historic->energy_cons;
+                
+                $historic->save();
+            }
             
             $existTariff->save();
         } else {
