@@ -67,24 +67,22 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">14/04/2021</th>
-                    <th>1000 Wh</th>
-                    <th>R$ 0,38</th>
-                    <th>R$ 380,00</th>
-                  </tr>
-                  <tr>
-                    <th scope="row">13/04/2021</th>
-                    <th>920 Wh</th>
-                    <th>R$ 0,38</th>
-                    <th>R$ 349,60</th>
-                  </tr>
-                  <tr>
-                    <th scope="row">12/04/2021</th>
-                    <th>896 Wh</th>
-                    <th>R$ 0,38</th>
-                    <th>R$ 340,40</th>
-                  </tr>
+                    @foreach ($historics as $historic)
+                    <tr>
+                      <th scope="row">{{ \Carbon\Carbon::parse($historic->date)->format('d/m/Y') }}</th>
+                      <th>{{ $historic->energy_cons }} Wh</th>
+                      @foreach ($tariffs as $tariff)
+                        @php
+                            $temp = explode('-', $tariff->date);
+                            $temp2 = explode('-', $historic->date);
+                        @endphp
+                        @if ($temp[1] == $temp2[1])
+                            <th>R$ {{ str_replace('.', ',', $tariff->value) }}</th>
+                        @endif
+                      @endforeach
+                      <th>R$ {{ str_replace('.', ',', $historic->price) }}</th>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
