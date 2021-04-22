@@ -81,7 +81,7 @@ openssl x509 -in AmazonRootCA1.pem -out ca.der -outform DER
 ---
 
 ### Preparando o ambiente para carregar o código na placa
-1. Clone o repositório [TROCAR](www.github.com/AllanCapistrano)
+1. Clone o repositório [SD-PBL2-ESP8266](https://github.com/JoaoErick/SD-PBL2-ESP8266)
 2. No diretório do repositório clonado, crie um novo diretório chamado ``data`` e mova os certificados convertidos para o mesmo;
 3. Abra o projeto na IDE do Arduíno, e preencha as credenciais necessárias: 
 ```cpp
