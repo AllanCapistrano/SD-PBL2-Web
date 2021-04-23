@@ -67,6 +67,9 @@ class ShowSchedule extends Component
                 'updated_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
                 'created_at' => \Carbon\Carbon::now("America/Sao_Paulo"),
             ]);
+
+            $this->begin = null;
+            $this->end = null;
         } else {
             return redirect()->back()->with("error", "Falha ao executar a ação!");
         }
