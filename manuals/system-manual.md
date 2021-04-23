@@ -126,7 +126,14 @@ composer install
 cp .env.example .env
 php artisan key:generate
 ```
-
+2. No diretório do projeto Laravel, criei um novo diretório chamado ``data``;
+3. Neste diretório criado, coloque os arquivos dos certificados que possuem a extensão ``.pem``;
+4. Entre no diretório ``config``, abra o arquivo ``mqtt-client.php``;
+5. Nesse arquivo, substitua ``xxxxxxxxxx`` pelo nome do certificado gerado.
+6. Abra o terminal, e execute o seguinte comando:
+```powershell
+php artisan config:clear
+```
 ---
 
 ## Elastic Beanstalk e AWS RDS
