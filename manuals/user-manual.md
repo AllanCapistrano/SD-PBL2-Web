@@ -3,9 +3,9 @@
 ## Link da aplicação Web
 ### [TechBulb](http://techbulb-env.eba-9iwqr9sh.us-east-1.elasticbeanstalk.com/)
 
-- [Página Inicial](#-página-inicial)
-- [Página de Horário](#-página-de-horário)
-- [Página de Histórico](#-página-de-histórico)
+- [Página Inicial](#página-inicial)
+- [Página de Horário](#página-de-horário)
+- [Página de Histórico](#página-de-histórico)
 
 
 ---
