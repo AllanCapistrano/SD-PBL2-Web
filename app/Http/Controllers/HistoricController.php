@@ -48,9 +48,9 @@ class HistoricController extends Controller
             
             $historic->save();
         } else {
-            $existHistoric->time_on = $timeOn;
-            $existHistoric->energy_cons = $energyCons;
-            $existHistoric->price = $this->verifyTariff($date) * $energyCons;
+            $existHistoric->time_on = $existHistoric->time_on + $timeOn;
+            $existHistoric->energy_cons = $existHistoric->energy_cons + $energyCons;
+            $existHistoric->price = $existHistoric->price + ($this->verifyTariff($date) * $energyCons);
             
             $existHistoric->save();
         }
