@@ -16,7 +16,7 @@
 Para ligar/desligar clice no ícone 💡 presente no centro da tela. O estado atual da mesma é descrito abaixo do ícone.
 
 <p align="center">
-  <img src="manual-images/light_bulb.png" width="70%">
+  <img src="../manual-images/light_bulb.png" width="70%">
 </p>
 
 ---
@@ -32,7 +32,7 @@ Após definir todos os campos, clique em ``Ativar``.
 Exemplo definindo que a lâmpada ficará ligada por um tempo de 5 minutos:
 
 <p align="center">
-  <img src="manual-images/timer.png" width="70%">
+  <img src="../manual-images/timer.png" width="70%">
 </p>
 
 ---
@@ -52,13 +52,13 @@ Após definir todos os campos, clique em ``Ativar``.
 **Obs: A definição dos horários só será válida, caso o horário de fim seja maior que o de início.**
 
 <p align="center">
-  <img src="manual-images/schedule.png" width="70%">
+  <img src="../manual-images/schedule.png" width="70%">
 </p>
 
 É possível excluir os horários criados, clicando no botão 🗑️
 
 <p align="center">
-  <img src="manual-images/delete_schedule.png" width="70%">
+  <img src="../manual-images/delete_schedule.png" width="70%">
 </p>
 
 ---
@@ -71,7 +71,7 @@ Defina a tarifa para o mês desejado, escrevendo o valor no primeiro campo, e se
 Após definir todos os campos, clique em ``Salvar``.
 
 <p align="center">
-  <img src="manual-images/historic.png" width="70%">
+  <img src="../manual-images/historic.png" width="70%">
 </p>
 
 **Obs: Caso seja definida uma tarifa para um mês/ano que já esteja cadastrado, a anterior será sobrescrita e os preços relacionados com a tarifa daquele
@@ -83,10 +83,5 @@ mês serão atualizados automaticamente.**
 Sempre que quiser saber as informações mais recentes, clique no botão 🔄 para atualiar a tabela do histórico.
 
 <p align="center">
-  <img src="manual-images/refresh.png" width="70%">
+  <img src="../manual-images/refresh.png" width="70%">
 </p>
-
-
-
-
-
