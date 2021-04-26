@@ -60,27 +60,27 @@
             <table class="table table-borderless mt-5">
                 <thead>
                   <tr>
-                    <th scope="col">Data</th>
-                    <th scope="col">Consumo Total</th>
-                    <th scope="col">Tarifa</th>
-                    <th scope="col">Preço Total</th>
+                    <th scope="col" class="table-font-size-custom">Data</th>
+                    <th scope="col" class="table-font-size-custom">Consumo Total</th>
+                    <th scope="col" class="table-font-size-custom">Tarifa</th>
+                    <th scope="col" class="table-font-size-custom">Preço Total</th>
                   </tr>
                 </thead>
                 <tbody>
                     @foreach ($historics as $historic)
                     <tr>
-                      <th scope="row">{{ \Carbon\Carbon::parse($historic->date)->format('d/m/Y') }}</th>
-                      <th>{{ $historic->energy_cons }} Wh</th>
+                      <th scope="row" class="table-font-size-custom">{{ \Carbon\Carbon::parse($historic->date)->format('d/m/Y') }}</th>
+                      <th class="table-font-size-custom">{{ $historic->energy_cons }} Wh</th>
                       @foreach ($tariffs as $tariff)
                         @php
                             $temp = explode('-', $tariff->date);
                             $temp2 = explode('-', $historic->date);
                         @endphp
                         @if ($temp[1] == $temp2[1])
-                            <th>R$ {{ str_replace('.', ',', $tariff->value) }}</th>
+                            <th class="table-font-size-custom">R$ {{ str_replace('.', ',', $tariff->value) }}</th>
                         @endif
                       @endforeach
-                      <th>R$ {{ str_replace('.', ',', $historic->price) }}</th>
+                      <th class="table-font-size-custom">R$ {{ str_replace('.', ',', $historic->price) }}</th>
                     </tr>
                     @endforeach
                 </tbody>

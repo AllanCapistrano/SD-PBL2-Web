@@ -63,22 +63,24 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer-section fixed-bottom">
-      <div class="container">
-        <div class="row footer-row align-items-center justify-content-center">
-          <div class="col-12 footer-col d-flex justify-content-center align-items-center">
-            <a href="https://github.com/AllanCapistrano" target="_blank">
-              <i class="fab fa-github-square"></i> 
-              <span class="author-footer">Allan Capistrano</span>
-            </a>
-            <a href="https://github.com/JoaoErick" target="_blank">
-              <i class="fab fa-github-square"></i>
-              <span class="author-footer">João Erick Barbosa</span>
-            </a>
+    <div class="mt-footer-custom">
+        <footer class="footer-section fixed-bottom">
+          <div class="container">
+            <div class="row footer-row align-items-center justify-content-center">
+              <div class="col-12 footer-col d-flex justify-content-center align-items-center">
+                <a href="https://github.com/AllanCapistrano" target="_blank">
+                  <i class="fab fa-github-square custom-item-size"></i> 
+                  <span class="author-footer">Allan Capistrano</span>
+                </a>
+                <a href="https://github.com/JoaoErick" target="_blank">
+                  <i class="fab fa-github-square custom-item-size"></i>
+                  <span class="author-footer">João Erick Barbosa</span>
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </footer>
+        </footer>
+    </div>
     
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
