@@ -79,7 +79,7 @@ mês serão atualizados automaticamente.**
 ---
 
 ### Atualizar Histórico
-Sempre que quiser saber as informações mais recentes, clique no botão 🔄 para atualiar a tabela do histórico.
+Sempre que quiser saber as informações mais recentes, clique no botão 🔄 para atualizar a tabela do histórico.
 
 <p align="center">
   <img src="../manual-images/refresh.png" width="70%">
