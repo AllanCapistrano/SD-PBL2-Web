@@ -26,7 +26,18 @@ class HomeController extends Controller
         $historics = Historic::orderBy('id', 'desc')->paginate(30);
         $tariffs = Tariff::get();
 
-        return view('historic', compact('historics', 'tariffs'));
+        $totalTimeOn = 0.0;
+        $totalCons = 0.0;
+        $totalPrice = 0.0;
+
+        foreach ($historics as $historic) {
+            $totalTimeOn += $historic->time_on;
+            $totalCons += $historic->energy_cons;
+            $totalPrice += $historic->price;
+        }
+
+
+        return view('historic', compact('historics', 'tariffs', 'totalTimeOn', 'totalCons', 'totalPrice'));
     }
 
     /*

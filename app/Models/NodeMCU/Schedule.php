@@ -18,6 +18,8 @@ class Schedule extends Model
         'begin',
         'end',
         'on',
+        'created_at',
+        'updated_at',
     ];
 
 }
