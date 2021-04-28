@@ -61,15 +61,17 @@
                 <thead>
                   <tr>
                     <th scope="col" class="table-font-size-custom">Data</th>
-                    <th scope="col" class="table-font-size-custom">Consumo Total</th>
+                    <th scope="col" class="table-font-size-custom">Tempo</th>
+                    <th scope="col" class="table-font-size-custom">Consumo</th>
                     <th scope="col" class="table-font-size-custom">Tarifa</th>
-                    <th scope="col" class="table-font-size-custom">Preço Total</th>
+                    <th scope="col" class="table-font-size-custom">Preço</th>
                   </tr>
                 </thead>
                 <tbody>
                     @foreach ($historics as $historic)
                     <tr>
                       <th scope="row" class="table-font-size-custom">{{ \Carbon\Carbon::parse($historic->date)->format('d/m/Y') }}</th>
+                      <th class="table-font-size-custom">{{ $historic->time_on }} h</th>
                       <th class="table-font-size-custom">{{ $historic->energy_cons }} Wh</th>
                       @foreach ($tariffs as $tariff)
                         @php
@@ -83,6 +85,13 @@
                       <th class="table-font-size-custom">R$ {{ str_replace('.', ',', $historic->price) }}</th>
                     </tr>
                     @endforeach
+                    <tr>
+                        <th scope="col" class="total table-font-size-custom">Total</th>
+                        <th scope="col" class="total table-font-size-custom">{{ $totalTimeOn }} h</th>
+                        <th scope="col" class="total table-font-size-custom">{{ $totalCons }} Wh</th>
+                        <th scope="col" class="total table-font-size-custom"> - </th>
+                        <th scope="col" class="total table-font-size-custom">R$ {{ str_replace('.', ',', $totalPrice) }}</th>
+                    </tr>
                 </tbody>
             </table>
         </div>
