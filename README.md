@@ -15,7 +15,7 @@
 ------------
 
 ## 📚 Descrição ##
-Aplicação Web destinada à resolução do problema dois do MI - Sistemas Digistais (TEC 499).
+Aplicação Web destinada à resolução do problema dois do MI - Sistemas Digistais (TEC 499) - [Universidade Estadual de Feira de Santana (UEFS)](https://www.uefs.br/).
 
 O objetivo desta, é realizar a manipulação de uma lâmpada com o auxílio do módulo NodeMCU 8266 utizando o protocolo de comunicação MQTT.
 
